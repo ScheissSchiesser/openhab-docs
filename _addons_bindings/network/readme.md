@@ -34,24 +34,24 @@ allowSystemPings=false
 
 ## Supported Things
 
-- **pingdevice:** Detects device presence by using icmp pings, arp pings and dhcp packet sniffing.
+- **device:** Detects device presence by using icmp pings, arp pings and dhcp packet sniffing.
 - **servicedevice:** Detects device presence by scanning for a specific open tcp port. 
 
 ## Discovery
 
-Auto discovery can be used to scan the local network for **pingdevice** things by sending a ping to every IP on the network. Some network tools will identify this as a network intruder alarm, therefore automatic background discovery is disabled and a manual scan needs to be issued.
+Auto discovery can be used to scan the local network for **device** things by sending a ping to every IP on the network. Some network tools will identify this as a network intruder alarm, therefore automatic background discovery is disabled and a manual scan needs to be issued.
 
 ## Thing Configuration
 
 ```
-network:pingdevice:one_device [ hostname="192.168.0.64" ]
+network:device:one_device [ hostname="192.168.0.64" ]
 
-network:pingdevice:second_device [ hostname="192.168.0.65", retry=1, timeout=5000, refreshInterval=60000 ]
+network:device:second_device [ hostname="192.168.0.65", retry=1, timeout=5000, refreshInterval=60000 ]
 
 network:servicedevice:important_server [ hostname="192.168.0.62", port=1234 ]
 ```
 
-Use the following options for a **network:pingdevice**:
+Use the following options for a **network:device**:
 
 - **hostname:** IP address or hostname of the device
 - **retry:** After how many refresh interval cycles shall the device be assumed as offline. Default is 1.
@@ -162,14 +162,14 @@ Things support the following channels:
 demo.Things:
 
 ```xtend
-network:pingdevice:devicename [ hostname="192.168.0.42" ]
+network:device:devicename [ hostname="192.168.0.42" ]
 ```
 
 demo.items:
 
 ```xtend
-Switch MyDevice { channel="network:pingdevice:devicename:online" }
-Number MyDeviceResponseTime { channel="network:pingdevice:devicename:latency" }
+Switch MyDevice { channel="network:device:devicename:online" }
+Number MyDeviceResponseTime { channel="network:device:devicename:latency" }
 ```
 
 demo.sitemap:
